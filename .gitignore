@@ -1,0 +1,21 @@
+# dependencies
+node_modules
+dist
+dist-ssr
+*.local
+
+# env files — NEVER push these to GitHub
+.env
+.env.local
+.env.production
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
