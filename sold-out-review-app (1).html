@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sold-out review — Barque Gifts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --p-bg:#f1f1f1; --p-surface:#ffffff; --p-surface-sub:#fafafa; --p-surface-hover:#f7f7f7;
+  --p-text:#303030; --p-text-sub:#616161; --p-text-dis:#8a8a8a;
+  --p-border:#e3e3e3; --p-border-strong:#cdcdcd;
+  --p-btn:#303030; --p-btn-hover:#1a1a1a;
+  --p-success-bg:#cdfee1; --p-success-tx:#0c5132;
+  --p-warn-bg:#ffd6a4; --p-warn-tx:#5e4200;
+  --p-info-bg:#d9f0ff; --p-info-tx:#00527c;
+  --p-crit-bg:#ffd7d5; --p-crit-tx:#8e1f0b;
+  --p-r:8px; --p-r-sm:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--p-bg);color:var(--p-text);font-size:13px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;font-size:13px;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:2px solid #005bd3;outline-offset:1px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* top bar */
+.topbar{background:#1a1a1a;height:56px;display:flex;align-items:center;gap:12px;padding:0 12px;position:sticky;top:0;z-index:40}
+.logo{width:28px;height:28px;border-radius:7px;background:#00a47c;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:14px;flex-shrink:0}
+.searchbar{flex:1;max-width:520px;margin:0 auto;background:#303030;border:1px solid #444;border-radius:var(--p-r);height:32px;display:flex;align-items:center;padding:0 10px;color:#b5b5b5;font-size:13px;gap:8px}
+.store{display:flex;align-items:center;gap:8px;color:#e3e3e3;font-size:12px;font-weight:500;background:#303030;border-radius:var(--p-r);padding:5px 8px}
+.avatar{width:22px;height:22px;border-radius:var(--p-r-sm);background:#36c;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center}
+
+.shell{display:flex;align-items:flex-start;max-width:1240px;margin:0 auto;padding:0 12px}
+
+/* nav */
+.nav{width:212px;flex-shrink:0;padding:12px 0 0;position:sticky;top:56px}
+.navitem{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:var(--p-r);color:var(--p-text);font-size:13px;font-weight:450;margin-bottom:1px}
+.navitem:hover{background:#ebebeb}
+.navitem.on{background:#e0e0e0;font-weight:600}
+.navlabel{font-size:12px;color:var(--p-text-sub);padding:14px 9px 5px;font-weight:500}
+.ico{width:17px;height:17px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* page */
+.page{flex:1;min-width:0;padding:16px 0 60px 20px;max-width:900px}
+.pagehead{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+h1{font-size:20px;font-weight:600;letter-spacing:-.01em}
+.sub{color:var(--p-text-sub);font-size:13px;margin-top:2px}
+
+.btn{background:var(--p-surface);border:1px solid var(--p-border-strong);border-radius:var(--p-r);padding:6px 12px;font-weight:500;box-shadow:0 1px 0 rgba(0,0,0,.05);display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:#f7f7f7}
+.btn.primary{background:var(--p-btn);color:#fff;border-color:var(--p-btn)}
+.btn.primary:hover{background:var(--p-btn-hover)}
+.btn:disabled{background:#f1f1f1;color:var(--p-text-dis);border-color:var(--p-border);box-shadow:none;cursor:not-allowed}
+.btn.sm{padding:4px 9px;font-size:12px}
+
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--p-border);margin-bottom:16px}
+.tab{padding:8px 11px;font-size:13px;font-weight:500;color:var(--p-text-sub);border-bottom:2px solid transparent;margin-bottom:-1px;border-radius:var(--p-r) var(--p-r) 0 0}
+.tab:hover{background:#ebebeb;color:var(--p-text)}
+.tab.on{color:var(--p-text);border-bottom-color:var(--p-text);font-weight:600}
+.count{background:#e3e3e3;color:var(--p-text-sub);font-size:11px;font-weight:600;padding:1px 6px;border-radius:20px;margin-left:5px}
+.tab.on .count{background:var(--p-text);color:#fff}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--p-surface);border:1px solid var(--p-border);border-radius:12px;padding:12px 14px}
+.stat p{font-size:12px;color:var(--p-text-sub);font-weight:500}
+.stat b{font-size:24px;font-weight:600;letter-spacing:-.02em;display:block;margin-top:2px}
+
+.card{background:var(--p-surface);border:1px solid var(--p-border);border-radius:12px;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.cardhead{padding:11px 14px;border-bottom:1px solid var(--p-border);display:flex;align-items:center;gap:10px;background:var(--p-surface-sub);flex-wrap:wrap}
+.cardtitle{font-size:14px;font-weight:600;padding:13px 14px 0}
+
+.row{display:flex;align-items:center;gap:11px;padding:10px 14px;border-bottom:1px solid var(--p-border)}
+.row:last-child{border-bottom:none}
+.row:hover{background:var(--p-surface-hover)}
+.row.kept{background:#f6fbf8}
+.row.locked{background:var(--p-surface-sub)}
+input[type=checkbox]{width:15px;height:15px;accent-color:#303030;cursor:pointer;flex-shrink:0;margin:0}
+input[type=checkbox]:disabled{cursor:not-allowed}
+.thumb{width:36px;height:36px;border-radius:var(--p-r);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:17px}
+.meta{flex:1;min-width:0}
+.name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.detail{font-size:12px;color:var(--p-text-sub);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.b-warn{background:var(--p-warn-bg);color:var(--p-warn-tx)}
+.b-ok{background:var(--p-success-bg);color:var(--p-success-tx)}
+.b-info{background:var(--p-info-bg);color:var(--p-info-tx)}
+.b-mute{background:#ebebeb;color:var(--p-text-sub)}
+.link{color:#005bd3;font-weight:500;text-decoration:none}
+.link:hover{text-decoration:underline}
+
+.actionbar{position:sticky;bottom:12px;margin-top:14px;background:var(--p-surface);border:1px solid var(--p-border-strong);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 14px rgba(0,0,0,.10);z-index:20;flex-wrap:wrap}
+.actionbar .msg{flex:1;font-size:13px;font-weight:500;min-width:180px}
+
+.empty{padding:44px 20px;text-align:center}
+.empty .ec{width:44px;height:44px;border-radius:50%;background:#f1f1f1;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.empty h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.empty p{color:var(--p-text-sub);max-width:340px;margin:0 auto}
+
+.setrow{padding:13px 14px;border-bottom:1px solid var(--p-border);display:flex;gap:14px;align-items:flex-start}
+.setrow:last-child{border-bottom:none}
+.setrow .lbl{flex:1;min-width:0}
+.setrow .lbl b{font-size:13px;font-weight:600;display:block}
+.setrow .lbl span{font-size:12px;color:var(--p-text-sub);display:block;margin-top:2px}
+select{font-family:inherit;font-size:13px;padding:6px 9px;border:1px solid var(--p-border-strong);border-radius:var(--p-r);background:#fff;min-width:184px;color:var(--p-text);cursor:pointer}
+.switch{width:38px;height:22px;border-radius:20px;background:#b5b5b5;position:relative;flex-shrink:0;transition:background .15s;border:none}
+.switch.on{background:#303030}
+.switch i{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.switch.on i{left:18px}
+.pill{display:inline-flex;align-items:center;gap:5px;background:#ebebeb;border-radius:20px;padding:3px 5px 3px 10px;font-size:12px;font-weight:500;margin:0 5px 5px 0}
+.pill button{width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--p-text-sub);font-size:13px;line-height:1}
+.pill button:hover{background:#d9d9d9;color:var(--p-text)}
+
+.banner{background:var(--p-info-bg);border-radius:12px;padding:11px 14px;display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}
+.banner b{font-weight:600;font-size:13px}
+.banner p{font-size:12px;color:var(--p-info-tx);margin-top:2px}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:#303030;color:#fff;padding:11px 18px;border-radius:var(--p-r);font-size:13px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.28);opacity:0;transition:all .22s;z-index:80;display:flex;align-items:center;gap:9px}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.hidden{display:none !important}
+.note{font-size:12px;color:var(--p-text-sub);text-align:center;padding:11px}
+
+.demo{background:#303030;color:#e3e3e3;font-size:12px;text-align:center;padding:7px 12px}
+.demo b{color:#fff;font-weight:600}
+
+@media(max-width:900px){
+  .nav{display:none}
+  .page{padding:16px 0 60px;max-width:100%}
+  .cards{grid-template-columns:1fr}
+  .searchbar{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+
+<p class="sr">Interactive prototype of a custom Shopify embedded app for Barque Gifts that reviews sold-out products before hiding them.</p>
+
+<div class="demo">Interactive prototype &mdash; <b>Sold-out review</b> for Barque Gifts. Try unchecking items, then apply the batch. Prepared by IT-Geeks.</div>
+
+<div class="topbar">
+  <div class="logo">b</div>
+  <div class="searchbar">
+    <svg class="ico" viewBox="0 0 24 24" style="width:15px;height:15px"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    Search
+  </div>
+  <div class="store">Barque Gifts <div class="avatar">KB</div></div>
+</div>
+
+<div class="shell">
+
+  <nav class="nav" aria-label="Shopify admin">
+    <div class="navitem"><svg class="ico" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1z"/></svg>Home</div>
+    <div class="navitem"><svg class="ico" viewBox="0 0 24 24"><path d="M5 3h14v18l-7-4-7 4z"/></svg>Orders</div>
+    <div class="navitem"><svg class="ico" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4 8 4 8-4zM4 7v10l8 4 8-4V7"/></svg>Products</div>
+    <div class="navitem"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.1-6 7-6s7 2 7 6"/></svg>Customers</div>
+    <div class="navitem"><svg class="ico" viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8"/></svg>Analytics</div>
+    <div class="navlabel">Apps</div>
+    <div class="navitem on"><svg class="ico" viewBox="0 0 24 24"><path d="M3 12s3.5-7 9-7 9 7 9 7-3.5 7-9 7-9-7-9-7z"/><path d="M4 4l16 16"/></svg>Sold-out review</div>
+    <div class="navlabel">Settings</div>
+    <div class="navitem"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.6 1.6 0 00-2.7 1.1V21a2 2 0 11-4 0v-.1A1.6 1.6 0 005 19.4l-.1.1a2 2 0 11-2.8-2.8l.1-.1A1.6 1.6 0 003 14H3a2 2 0 010-4h.1A1.6 1.6 0 004.6 5l-.1-.1a2 2 0 112.8-2.8l.1.1A1.6 1.6 0 0110 3V3a2 2 0 014 0v.1a1.6 1.6 0 002.7 1.1l.1-.1a2 2 0 112.8 2.8l-.1.1a1.6 1.6 0 001.1 2.7H21a2 2 0 010 4h-.1a1.6 1.6 0 00-1.5 1z"/></svg>General</div>
+  </nav>
+
+  <main class="page">
+
+    <div class="pagehead">
+      <div style="flex:1">
+        <h1>Sold-out review</h1>
+        <p class="sub" id="subline">Batch created today at 6:00 AM &middot; runs daily</p>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-view="pending" role="tab">Pending review <span class="count" id="cPending">18</span></button>
+      <button class="tab" data-view="restock" role="tab">Restock queue <span class="count" id="cRestock">3</span></button>
+      <button class="tab" data-view="kept" role="tab">Kept active <span class="count" id="cKept">0</span></button>
+      <button class="tab" data-view="history" role="tab">History</button>
+    </div>
+
+    <!-- PENDING -->
+    <section id="v-pending">
+      <div class="cards">
+        <div class="stat"><p>Selected to hide</p><b id="sSel">0</b></div>
+        <div class="stat"><p>Keeping visible</p><b id="sKeep">0</b></div>
+        <div class="stat"><p>Hidden this month</p><b>214</b></div>
+      </div>
+
+      <div class="card">
+        <div class="cardhead">
+          <input type="checkbox" id="selAll" aria-label="Select all products" />
+          <span style="font-weight:500" id="selText">18 selected</span>
+          <span style="flex:1"></span>
+          <button class="btn sm" id="btnKeepAll">Keep all visible</button>
+        </div>
+        <div id="pendingList"></div>
+      </div>
+
+      <div class="actionbar" id="bar">
+        <span class="msg" id="barMsg">15 products will be hidden</span>
+        <button class="btn" id="btnDiscard">Discard batch</button>
+        <button class="btn primary" id="btnApply">Apply changes</button>
+      </div>
+    </section>
+
+    <!-- RESTOCK -->
+    <section id="v-restock" class="hidden">
+      <div class="banner">
+        <svg class="ico" viewBox="0 0 24 24" style="color:#00527c;margin-top:1px"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        <div><b>Back in stock</b><p>These products were hidden earlier and now have inventory again. Approve to put them back on the storefront.</p></div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><span style="font-weight:500">3 products ready to publish</span></div>
+        <div id="restockList"></div>
+      </div>
+      <div class="actionbar">
+        <span class="msg" id="rMsg">3 products will be published</span>
+        <button class="btn primary" id="btnPublish">Publish selected</button>
+      </div>
+    </section>
+
+    <!-- KEPT -->
+    <section id="v-kept" class="hidden">
+      <div class="card" id="keptCard"></div>
+    </section>
+
+    <!-- HISTORY -->
+    <section id="v-history" class="hidden">
+      <div class="card">
+        <div class="cardhead"><span style="font-weight:500">Change log</span><span style="flex:1"></span><button class="btn sm">Export CSV</button></div>
+        <div id="historyList"></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"><svg class="ico" viewBox="0 0 24 24" style="width:15px;height:15px"><path d="M20 6L9 17l-5-5"/></svg><span id="toastMsg"></span></div>
+
+<script>
+var products=[
+ {id:1,n:"Hammered brass candle set",sku:"BG-4471",v:"Willow Row",d:"2 days ago",e:"\u{1F56F}\u{FE0F}",c:"#ffe0d1",sel:true},
+ {id:2,n:"Stoneware pour-over mug",sku:"BG-2093",v:"Kiln Co",d:"today",e:"\u2615",c:"#d9f0ff",sel:true},
+ {id:3,n:"Dried bloom wreath \u2014 large",sku:"BG-8810",v:"Field House",d:"4 days ago",e:"\u{1F490}",c:"#e3f5d4",sel:true},
+ {id:4,n:"Cedar and fig room mist",sku:"BG-1156",v:"Willow Row",d:"today",e:"\u{1F33F}",c:"#ffe3ee",sel:true},
+ {id:5,n:"Linen tea towel \u2014 sage stripe",sku:"BG-6604",v:"Kiln Co",d:"yesterday",e:"\u{1F9FA}",c:"#e8e4ff",sel:true},
+ {id:6,n:"Walnut serving board",sku:"BG-3391",v:"Timberline",d:"3 days ago",e:"\u{1FAB5}",c:"#f3e6d5",sel:true},
+ {id:7,n:"Beeswax taper pair",sku:"BG-7720",v:"Willow Row",d:"today",e:"\u{1F36F}",c:"#fff2cc",sel:true},
+ {id:8,n:"Ceramic bud vase \u2014 speckled",sku:"BG-5518",v:"Kiln Co",d:"yesterday",e:"\u{1F3FA}",c:"#d9f0ff",sel:true},
+ {id:9,n:"Botanical greeting card set",sku:"BG-9042",v:"Field House",d:"5 days ago",e:"\u2709\u{FE0F}",c:"#e3f5d4",sel:true},
+ {id:10,n:"Copper measuring spoons",sku:"BG-2277",v:"Timberline",d:"today",e:"\u{1F944}",c:"#ffe0d1",sel:true},
+ {id:11,n:"Lavender bath soak",sku:"BG-4903",v:"Willow Row",d:"2 days ago",e:"\u{1F9FC}",c:"#e8e4ff",sel:true},
+ {id:12,n:"Hand-thrown planter \u2014 small",sku:"BG-8134",v:"Kiln Co",d:"today",e:"\u{1FAB4}",c:"#e3f5d4",sel:true},
+ {id:13,n:"Wool throw \u2014 oatmeal",sku:"BG-6650",v:"Timberline",d:"yesterday",e:"\u{1F9F6}",c:"#f3e6d5",sel:true},
+ {id:14,n:"Citrus and clove candle",sku:"BG-3016",v:"Willow Row",d:"today",e:"\u{1F56F}\u{FE0F}",c:"#ffe0d1",sel:true},
+ {id:15,n:"Enamel travel tumbler",sku:"BG-7781",v:"Kiln Co",d:"3 days ago",e:"\u{1F375}",c:"#d9f0ff",sel:true},
+ {id:16,n:"Pressed flower bookmark",sku:"BG-1290",v:"Field House",d:"today",e:"\u{1F516}",c:"#ffe3ee",sel:true},
+ {id:17,n:"Holiday ornament \u2014 hand painted",sku:"BG-3302",v:"Field House",d:"today",e:"\u{1F384}",c:"#e8e4ff",sel:false,lock:"Excluded \u2014 pre-order"},
+ {id:18,n:"Custom monogram tote",sku:"BG-5527",v:"Timberline",d:"yesterday",e:"\u{1F45C}",c:"#f3e6d5",sel:false,lock:"Excluded \u2014 made to order"}
+];
+var restock=[
+ {n:"Amber glass soap dispenser",sku:"BG-4412",v:"Kiln Co",q:24,e:"\u{1F9F4}",c:"#f3e6d5"},
+ {n:"Eucalyptus shower bundle",sku:"BG-9938",v:"Field House",q:8,e:"\u{1F33F}",c:"#e3f5d4"},
+ {n:"Marble coaster set",sku:"BG-2841",v:"Timberline",q:15,e:"\u26AA",c:"#d9f0ff"}
+];
+var history=[
+ {t:"Today, 6:00 AM",a:"Batch created",d:"18 products flagged for review",w:"System"},
+ {t:"Yesterday, 8:14 AM",a:"12 products hidden",d:"Unpublished from online store",w:"Kandice B."},
+ {t:"Yesterday, 8:14 AM",a:"2 products kept visible",d:"Dried bloom wreath, Wool throw",w:"Kandice B."},
+ {t:"19 Aug, 9:02 AM",a:"4 products published",d:"Restocked and approved",w:"Kandice B."},
+ {t:"18 Aug, 8:31 AM",a:"9 products hidden",d:"Unpublished from online store",w:"Kandice B."}
+];
+var kept=[];
+
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+function drawPending(){
+  var l=$('pendingList');
+  if(!products.length){
+    l.innerHTML='<div class="empty"><div class="ec"><svg class="ico" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M20 6L9 17l-5-5"/></svg></div><h3>Nothing to review</h3><p>Every sold-out product has been handled. The next batch builds tomorrow at 6:00 AM.</p></div>';
+  } else {
+    l.innerHTML=products.map(function(p){
+      var badge=p.lock?'<span class="badge b-mute">'+esc(p.lock)+'</span>':(p.sel?'<span class="badge b-warn">0 in stock</span>':'<span class="badge b-ok">Keeping visible</span>');
+      return '<div class="row '+(p.lock?'locked':(p.sel?'':'kept'))+'">'
+       +'<input type="checkbox" data-id="'+p.id+'" '+(p.sel?'checked':'')+' '+(p.lock?'disabled':'')+' aria-label="'+esc(p.n)+'" />'
+       +'<div class="thumb" style="background:'+p.c+'" aria-hidden="true">'+p.e+'</div>'
+       +'<div class="meta"><div class="name">'+esc(p.n)+'</div><div class="detail">'+esc(p.sku)+' &middot; '+esc(p.v)+' &middot; sold out '+esc(p.d)+'</div></div>'
+       +badge+'</div>';
+    }).join('');
+  }
+  sync();
+}
+function sync(){
+  var act=products.filter(function(p){return !p.lock});
+  var sel=act.filter(function(p){return p.sel}).length;
+  var keep=act.length-sel;
+  $('sSel').textContent=sel; $('sKeep').textContent=keep;
+  $('cPending').textContent=products.length;
+  $('selText').textContent=sel+' of '+act.length+' selected';
+  var verb='hidden from your online store';
+  $('barMsg').textContent=sel===0?'No products selected':sel+' product'+(sel===1?'':'s')+' will be '+verb;
+  $('btnApply').disabled=sel===0;
+  var all=$('selAll'); all.checked=sel>0&&sel===act.length; all.indeterminate=sel>0&&sel<act.length;
+  $('bar').classList.toggle('hidden',!products.length);
+}
+function drawKept(){
+  $('cKept').textContent=kept.length;
+  $('keptCard').innerHTML=kept.length?
+   '<div class="cardhead"><span style="font-weight:500">'+kept.length+' product'+(kept.length===1?'':'s')+' staying visible</span><span style="flex:1"></span><span style="font-size:12px;color:#616161">Won\u2019t appear in future batches</span></div>'
+   +kept.map(function(p){return '<div class="row"><div class="thumb" style="background:'+p.c+'" aria-hidden="true">'+p.e+'</div><div class="meta"><div class="name">'+esc(p.n)+'</div><div class="detail">'+esc(p.sku)+' &middot; '+esc(p.v)+'</div></div><span class="badge b-ok">Live as sold out</span><button class="btn sm" data-restore="'+p.id+'">Stop keeping</button></div>'}).join('')
+   :'<div class="empty"><div class="ec"><svg class="ico" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M3 12s3.5-7 9-7 9 7 9 7-3.5 7-9 7-9-7-9-7z"/><circle cx="12" cy="12" r="2.5"/></svg></div><h3>No products kept visible yet</h3><p>Uncheck a product in your review list to keep it on the storefront as a visible sold out.</p></div>';
+}
+function drawRestock(){
+  $('restockList').innerHTML=restock.map(function(p){
+    return '<div class="row"><input type="checkbox" checked aria-label="'+esc(p.n)+'" /><div class="thumb" style="background:'+p.c+'" aria-hidden="true">'+p.e+'</div><div class="meta"><div class="name">'+esc(p.n)+'</div><div class="detail">'+esc(p.sku)+' &middot; '+esc(p.v)+'</div></div><span class="badge b-info">'+p.q+' back in stock</span></div>';
+  }).join('');
+  $('cRestock').textContent=restock.length;
+}
+function drawHistory(){
+  $('historyList').innerHTML=history.map(function(h){
+    return '<div class="row"><div class="meta"><div class="name">'+esc(h.a)+'</div><div class="detail">'+esc(h.d)+'</div></div><span style="font-size:12px;color:#616161;text-align:right;flex-shrink:0">'+esc(h.t)+'<br><span style="color:#8a8a8a">'+esc(h.w)+'</span></span></div>';
+  }).join('');
+}
+function toast(m){$('toastMsg').textContent=m;$('toast').classList.add('show');clearTimeout(window._t);window._t=setTimeout(function(){$('toast').classList.remove('show')},2600)}
+
+document.addEventListener('change',function(e){
+  var cb=e.target;
+  if(cb.dataset&&cb.dataset.id){
+    var p=products.filter(function(x){return x.id==cb.dataset.id})[0];
+    if(p){p.sel=cb.checked;drawPending()}
+  }
+  if(cb.id==='selAll'){products.forEach(function(p){if(!p.lock)p.sel=cb.checked});drawPending()}
+});
+
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-sw]');
+  if(t){t.classList.toggle('on');return}
+
+  var tab=e.target.closest('.tab');
+  if(tab){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    tab.classList.add('on');
+    ['pending','restock','kept','history'].forEach(function(v){$('v-'+v).classList.add('hidden')});
+    $('v-'+tab.dataset.view).classList.remove('hidden');
+    return;
+  }
+  if(e.target.id==='btnKeepAll'){products.forEach(function(p){if(!p.lock)p.sel=false});drawPending();return}
+  if(e.target.id==='btnDiscard'){toast('Batch discarded. Nothing was changed.');return}
+
+  if(e.target.id==='btnApply'){
+    var act=products.filter(function(p){return !p.lock});
+    var hide=act.filter(function(p){return p.sel});
+    var stay=act.filter(function(p){return !p.sel});
+    if(!hide.length)return;
+    stay.forEach(function(p){if(!kept.some(function(k){return k.id===p.id}))kept.push(p)});
+    history.unshift({t:'Just now',a:hide.length+' products hidden',d:'Unpublished from online store',w:'Kandice B.'});
+    if(stay.length)history.unshift({t:'Just now',a:stay.length+' products kept visible',d:stay.map(function(p){return p.n}).join(', '),w:'Kandice B.'});
+    products=products.filter(function(p){return p.lock});
+    drawPending();drawKept();drawHistory();
+    toast(hide.length+' products hidden from your store');
+    return;
+  }
+  if(e.target.id==='btnPublish'){
+    var n=restock.length;restock=[];drawRestock();
+    history.unshift({t:'Just now',a:n+' products published',d:'Restocked and approved',w:'Kandice B.'});
+    drawHistory();
+    $('restockList').innerHTML='<div class="empty"><div class="ec"><svg class="ico" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M20 6L9 17l-5-5"/></svg></div><h3>Restock queue is clear</h3><p>Products will appear here when inventory comes back.</p></div>';
+    $('rMsg').textContent='Nothing waiting to publish';
+    document.getElementById('btnPublish').disabled=true;
+    toast(n+' products are back on your store');
+    return;
+  }
+  var r=e.target.closest('[data-restore]');
+  if(r){
+    kept=kept.filter(function(k){return k.id!=r.dataset.restore});
+    drawKept();toast('Removed from your keep list');
+  }
+});
+
+drawPending();drawRestock();drawKept();drawHistory();
+</script>
+</body>
+</html>
